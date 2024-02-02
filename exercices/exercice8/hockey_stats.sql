@@ -25,7 +25,6 @@ CREATE DATABASE IF NOT EXISTS `hockey_stats` DEFAULT CHARACTER SET utf8 COLLATE 
 USE `hockey_stats`;
 
 -- --------------------------------------------------------
-
 --
 -- Structure de la table `t_equipe`
 --

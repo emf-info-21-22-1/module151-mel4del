@@ -1,14 +1,13 @@
 <?php
-	$bdd = new PDO('mysql:host=localhost;dbname=nomDB', 'root', 'pwd');
-	$reponse = …;
-	
-	
-	while (…)
-	{
-	
-	        …
+$bdd = new PDO('mysql:host=localhost;dbname=nomDB', 'root', 'pwd');
+$reponse = "SELECT titre from jeux_video";
 
-	
-	}
-	$reponse->closeCursor();
+$titre = titre;
+while ($titre != null) {
+	echo $titre;
+
+
+
+}
+$reponse->closeCursor();
 ?>

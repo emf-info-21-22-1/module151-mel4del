@@ -5,7 +5,7 @@
  * @version 1.0 / 20-SEP-2013
  */
 
-var BASE_URL = "http://localhost:8284/serveur.php";
+var BASE_URL = "http://localhost:8081/serveur.php";
 
 /**
  * Fonction permettant de charger les données d'équipe.
@@ -13,11 +13,13 @@ var BASE_URL = "http://localhost:8284/serveur.php";
  * @param {type} Fonction de callback en cas d'erreur.
  */
 function chargerTeam(successCallback, errorCallback) {
-    $.ajax({
+    $.ajax({ 
     type: "GET",
     dataType: "xml",
     url: BASE_URL,
     success: successCallback,
     error: errorCallback
+    
     });
+ 
 }

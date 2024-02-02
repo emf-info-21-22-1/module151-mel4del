@@ -13,7 +13,23 @@
       </tr>
       <?php
         require('ctrl.php');
-        // A compléter....
+
+        $array = getEquipes();
+        
+        $i =1;
+        function ajouteCellule($id, $equipe){
+          echo "<tr><td> $id </td> <td> $equipe </td></tr>";
+        
+        
+        
+      }
+          foreach($array as $equipe){
+            
+            ajouteCellule($i, $equipe);
+            $i++;
+            
+     
+      }
       ?>
       </table>
     </div>

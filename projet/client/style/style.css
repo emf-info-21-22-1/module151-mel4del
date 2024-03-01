@@ -1,0 +1,22 @@
+.container .form.login {
+    animation: login-form 1s ease-out forwards;
+}
+
+.container .form.register {
+    animation: register-form 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+.form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+    align-items: center;
+}
+
+.column-label {
+    text-align: right;
+}
+.small-button {
+    padding: 5px 10px;
+    font-size: 14px;
+}

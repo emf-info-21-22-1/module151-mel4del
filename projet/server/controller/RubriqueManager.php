@@ -13,6 +13,10 @@ class RubriqueManager
     public function createRubrique($nom)
     {
         $this->rubriqueDB->addRubrique($nom);
+     
+        $resultat ="ok";
+        $status = "la rubrique a bien été ajouté à la DB";
+        return json_encode(array("status"=>$status,"info"=>$resultat));
     }
 
 

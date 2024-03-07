@@ -9,8 +9,10 @@ require_once('controller/SessionManager.php');
 $rubrique = new RubriqueManager();
 
 
-if (isset($_POST['exemple']) == 'nom') {
-    $rubrique->createRubrique($nom);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+   if (isset($_POST["rubrique"])){
+        echo $rubrique->createRubrique($_POST['rubrique']);
+   }
 }
 
 ?>

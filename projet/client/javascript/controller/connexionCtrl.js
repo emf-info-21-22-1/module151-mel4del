@@ -8,7 +8,11 @@ $(document).ready(function(){
     var butCo = $("#register");
     var nom = $("#nom");
     var mdp = $("#register_password");
-    var user = '';
+    var confirmMdp = $("#confirm_password");
+    if (mdp==confirmMdp) {
+        
+        
+    }
 
     $.getScript("javascript/beans/user.js", function (){
         console.log("user.js chargé");

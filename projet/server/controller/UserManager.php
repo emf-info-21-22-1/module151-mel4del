@@ -9,6 +9,8 @@ class UserManager
     {
         $this->userDB = new UserDBManager();
         $this->sessionManager = new SessionManager();
+        $this->sessionManager = SessionManager::getInstance();  
+        
 
     }
     public function createUser($nom, $mdp, $isAdmin): string

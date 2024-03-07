@@ -2,6 +2,7 @@
 include_once('configFile.php');
 class Connexion {
 	private $pdo;
+    private static $_instance = null;
 	
 	/**
      * Fonction d'ouvrir une connexion à la base de données.
@@ -13,8 +14,14 @@ class Connexion {
     		print "Erreur !: " . $e->getMessage() . "<br/>";
     		die();
 		}
-	}
+    }
+    public static function getInstance() {
+        if (is_null(self::$_instance)) {
+            self::$_instance = new connexion();
+        }
 
+        return self::$_instance;
+    }
     /**
      * Fonction permettant d'exécuter un select dans MySQL.
      * A utiliser pour les SELECT.
@@ -22,10 +29,11 @@ class Connexion {
      * @param String $query. Requête à exécuter.
      * @return toutes les lignes du select
      */
-    public function selectQuery($query) {
+    public function selectQuery($query, $params) {
         try {
-	        $queryRes =  $this->pdo->query($query);		
-	        return  $queryRes->fetchAll();
+            $queryPrepared = $this->pdo->prepare($query);
+            $queryPrepared->execute($params);
+            return $queryPrepared->fetchAll();
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
@@ -39,14 +47,14 @@ class Connexion {
      * @param String $query. Requête à exécuter.
      * @return true si la requête a été executée
      */
-    public function executeQuery($query) {
+    public function executeQuery($query, $params) {
         try {
-			$this->pdo->query($query);
-			return true;
+            $queryPrepared = $this->pdo->prepare($query);
+            $queryRes = $queryPrepared->execute($params);
+            return $queryRes;
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
             die();
-		
         }
     }
 

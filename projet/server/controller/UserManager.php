@@ -11,11 +11,12 @@ class UserManager
         $this->sessionManager = new SessionManager();
 
     }
-    public function createUser($nom, $mdp, $isAdmin): bool
+    public function createUser($nom, $mdp, $isAdmin): string
     {
 
         $result = $this->userDB->addUser($nom, $mdp, $isAdmin);
-        if ($result==true) {
+    if ($result==true) {
+          
             $resultat ="ok";
             $status = "l'user a bien été ajouté à la DB";
             return json_encode(array("status"=>$status,"info"=>$resultat));
@@ -35,9 +36,10 @@ class UserManager
 
         $result = $this->userDB->checkUser($nom, $mdp);
         if ($result == "ok") {
-            return "ok";
+            return json_encode(array('success' => true, 'message' => 'Connexion possible', 'Userlogin' => $nom, 'UserMdp' => $mdp));
+            
         } else {
-            return "pas ok";
+            return json_encode(array('erreur' => false, 'message' => 'Connexion Impossible', 'Userlogin' => $nom, 'UserMdp' => $mdp, "mauvais mot de passe"));
         }
     }
 

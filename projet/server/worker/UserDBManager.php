@@ -5,29 +5,40 @@ require_once("beans/User.php");
 class UserDBManager
 {
     private $db;
+    private $user;
 
     public function __construct()
     {
         $this->db = new Connexion();
+        $this->user = new User(0, "xxx", "xxx", 0);
     }
 
-    public function addUser($nom, $mdp, $isAdmin): bool
+    public function addUser($nom, $mdp, $isAdmin)
     {
+
+
         if (empty($nom) || empty($mdp) || empty($isAdmin)) {
-            return false;
-        }
-        $hashedMdp = password_hash($mdp, PASSWORD_DEFAULT);
 
-       
-        $sql = $this->db->executeQuery("insert into t_user (nom, mdp, isAdmin) VALUES (?, ?, ?);", array($nom, $mdp, $isAdmin));
+            $hashedMdp = password_hash($mdp, PASSWORD_DEFAULT);
+            $nbUser = $this->countUser();
+            //        echo $nbUser;
+            $params = array('id' => $nbUser + 1, 'nom' => $nom, 'password' => $hashedMdp, 'isAdmin' => $isAdmin);
+            $sql = Connexion::getInstance()->executeQuery("INSERT INTO t_user (pk_user, nom, mdp, isAdmin) VALUES (:id, :nom, :password, :isAdmin);", $params);
 
-        //oui == 1 non ==0
-        $count = $sql->rowCount();
-        if ($count > 0) {
-            return true;
-        } else {
-            return false;
+
+
+
+            if ($sql == false) {
+                return 'false';
+            } else {
+                return 'true';
+            }
         }
+
+
+
+        return false;
+
 
 
 
@@ -36,7 +47,7 @@ class UserDBManager
 
     public function recupUser($nom): string
     {
-        $query = $this->db->selectQuery("select pk_user, nom, mdp, isAdmin from t_user", $nom);
+        $query = $this->db->selectQuery("SELECT pk_user, nom, mdp, isAdmin FROM t_user", $nom);
         $user = array();
         foreach ($query as $row) {
             $user = new User($row->pk_user, $row->name, $row->mdp, $row->isAdmin);
@@ -45,34 +56,61 @@ class UserDBManager
         }
     }
 
-    public function checkUser($nom, $mdp): string
+    public function checkUser($nom, $mdp)
     {
-        $query = $this->db->selectQuery('select nom, mdp from t_user', $nom);
-        if ($row = !null) {
-            foreach ($query as $row) {
-                if ($row->mdp == $mdp) {
-                    return "ok";
-                } else {
-                    return "erreur";
-                }
+        $params = array('nom' => $nom);
+        echo $nom;
+        $query = $this->db->selectQuery("SELECT * FROM t_user WHERE nom=:nom;", $params);
+
+        $mdpDB = "";
+        echo count($query);
+
+        foreach ($query as $row) {
+            echo $row['mdp'];
+            if ($row['mdp']) {
+
+                $this->user->setMdp($row['mdp']);
+                $mdpDB = $this->user->getmdp();
+            }
+
+            if (password_verify($mdp, $mdpDB)) {
+                $result = "ok";
+            } else {
+
+
+                $result = "ok";
+
 
 
             }
+            return $result;
 
-        } else {
-            return "pas de user";
+
         }
     }
     public function getAll()
     {
         //retourne une liste de messages
         $query = $this->db->selectQuery("select pk_user, nom, mdp, isAdmin from t_user;", null);
-        $messagesList = array();
+        $usersList = array();
         foreach ($query as $row) {
-            $message = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
-            $messagesList[] = $message;
+            $user = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
+            $usersList[] = $user;
         }
-        return $messagesList;
+        return $usersList;
+    }
+
+    public function countUser()
+    {
+        $query = $this->db->selectQuery("SELECT pk_user, nom, mdp, isAdmin FROM t_user;", null);
+        $usersList = array();
+        foreach ($query as $row) {
+            $user = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
+            $usersList[] = $user;
+            // echo count($usersList);
+
+        }
+        return count($usersList);
     }
 }
 ?>

@@ -20,6 +20,15 @@ class Post
         $this->fk_rubrique = $rubrique;
     }
 
+    public function __construct($pkDuPost, string $titreDuPost, $img, $user, $rubrique)
+    {
+        $this->titre = $titreDuPost;
+        $this->pk_post = $pkDuPost;
+        $this->image = $img;
+        $this->fk_user = $user;
+        $this->fk_rubrique = $rubrique;
+    }
+
     public function getTexte()
     {
         return $this->texte;

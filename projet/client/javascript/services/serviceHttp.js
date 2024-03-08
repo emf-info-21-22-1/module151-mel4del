@@ -8,9 +8,9 @@ class ServiceHttp {
                 "usernameChk": username,
                 "passwordChk": mdp
             },
-            xhrFields: {
-                withCredentials: true
-            },
+            // xhrFields: {
+            //     withCredentials: true
+            // },
             contentType: "application/json; charset=utf-8",
             //success: function 
             success: successCallBack,
@@ -30,9 +30,9 @@ class ServiceHttp {
                 "password": mdp,
                 "isAdmin": 0
             },
-            xhrFields: {
-                withCredentials: true
-            },
+         //   xhrFields: {
+           //     withCredentials: true
+            //},
             contentType: "application/json; charset=utf-8",
             success: successCallBack,
             error: errorCallBack

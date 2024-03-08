@@ -34,7 +34,7 @@ class ConnexionCtrl {
 
     envoieLogin(username, password) {
 
-        if (username = ! null && password != null) {
+        if (username != null && password != null) {
             this.serviceHttp.loginUser(username, password, function (response) {
                 console.log(response);
                 let success = response.success;
@@ -55,7 +55,7 @@ class ConnexionCtrl {
 
     }
     registerUser(username, password) {
-        if (username = ! null && password != null) {
+        if (username != null && password != null) {
             this.serviceHttp.enregistrerUser(username, password, function (response) {
                 console.log(response);
                 let success = response.success;

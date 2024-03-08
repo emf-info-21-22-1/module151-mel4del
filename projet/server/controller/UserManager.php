@@ -14,22 +14,24 @@ class UserManager
     }
     public function createUser($nom, $mdp, $isAdmin)
     {
-
-        $result = $this->userDB->addUser($nom, $mdp, $isAdmin);
-
-        if ($result == true) {
-
-            $resultat = "ok";
-            $status = "l'user a bien été ajouté à la DB";
-            http_response_code(200);
-            return json_encode(array("status" => $status, "info" => $resultat));
+        $doublon = $this->getUser($nom);
+        if ($doublon->getNom() !== $nom) {
+            $result = $this->userDB->addUser($nom, $mdp, $isAdmin);
+            if ($result == true) {
+                $resultat = "ok";
+                $status = "l'user a bien été ajouté à la DB";
+                http_response_code(200);
+                return json_encode(array("status" => $status, "info" => $resultat));
+            } else {
+                http_response_code(401);
+                return json_encode(array("status" => false, "info" => "il y a eu un problème lors de l'ajout de l'utilisateur"));
+            }
         } else {
-            http_response_code(401);
-            return json_encode(array("status" => false, "info" => "il y a eu un problème lors de l'ajout de l'utilisateur"));
+            return json_encode(array("status" => false, "info" => "il y a eu un problème lors de l'ajout de l'utilisateur. Cet utilisateur existe déjà"));
         }
     }
 
-    public function getUser($nom)
+    public function getUser($nom): User
     {
 
         return $this->userDB->recupUser($nom);
@@ -71,11 +73,11 @@ class UserManager
                 $this->sessionManager->clear();
                 return json_encode(array('success' => true, 'message' => 'Deconnexion reussie'));
             } else {
-              
+
             }
 
 
-        }else{
+        } else {
             return json_encode(array('error' => true, 'message' => "Deconnexion echoue. Il n'y a pas d'utilisateur connecte"));
         }
 

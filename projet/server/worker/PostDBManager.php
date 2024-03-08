@@ -10,7 +10,7 @@ class PostDBManager
         $this->connexion = new Connexion();
     }
     //permet de créer un post
-    public function createPost($rubrique, $user, $titre, $image, $texte): bool
+    public function createPost($user,$rubrique, $titre, $image, $texte): bool
     {
         $nbPost = $this->countPost();
 

@@ -52,31 +52,22 @@ class UserDBManager
     {
         $params = array('nom' => $nom);
         $query = $this->db->selectQuery("SELECT pk_user, nom, mdp, isAdmin FROM t_user WHERE nom=:nom;", $params);
-        $user = array();
+        $user = new User(0, "xxx", "xx", 0);
         foreach ($query as $row) {
             $user = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
-            return $user;
-        }
 
+        }
+        return $user;
     }
 
     public function checkUser($nom, $mdp)
     {
         $params = array('nom' => $nom);
         $query = $this->db->selectQuery("SELECT * FROM t_user WHERE nom=:nom;", $params);
+        if (count($query) > 0) {
 
-        $mdpDB = "";
-
-
-        foreach ($query as $row) {
-
-            if ($row['mdp']) {
-
-                $this->user->setMdp($row['mdp']);
-                $mdpDB = $this->user->getmdp();
-            }
-
-            if (password_verify($mdp, $mdpDB)) {
+            $passwordFromDB = $query[0]['mdp'];
+            if (password_verify($mdp, $passwordFromDB)) {
                 $result = "ok";
             } else {
 

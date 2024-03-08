@@ -19,7 +19,7 @@ class PostManager
     {
 
         $currentUserName = $this->sessionManager->get("username");
-        if (($currentUserName) == !null) {
+        if (($currentUserName) ==! null) {
             $refUser = $this->sessionManager->get("pk");
             $result = $this->dbManager->createPost($refUser, $rubrique, $titre, $image, null);
             if ($result === true) {
@@ -42,7 +42,7 @@ class PostManager
         $currentUserName = $this->sessionManager->get("username");
         if (($currentUserName) == !null) {
             $refUser = $this->sessionManager->get("pk");
-            $reuslt = $this->dbManager->createPost($refUser, $rubrique, $titre, $image, $texte);
+            $result = $this->dbManager->createPost($refUser, $rubrique, $titre, $image, $texte);
             if ($result === true) {
                 http_response_code(200);
                 return json_encode(array('success' => true, 'message' => 'post publié'));

@@ -29,8 +29,11 @@ class UserDBManager
 
 
             if ($sql == false) {
+                http_response_code(500);
                 return 'false';
+
             } else {
+                http_response_code(200);
                 return 'true';
             }
         }
@@ -45,28 +48,28 @@ class UserDBManager
 
     }
 
-    public function recupUser($nom): string
+    public function recupUser($nom): User
     {
-        $query = $this->db->selectQuery("SELECT pk_user, nom, mdp, isAdmin FROM t_user", $nom);
+        $params = array('nom' => $nom);
+        $query = $this->db->selectQuery("SELECT pk_user, nom, mdp, isAdmin FROM t_user WHERE nom=:nom;", $params);
         $user = array();
         foreach ($query as $row) {
-            $user = new User($row->pk_user, $row->name, $row->mdp, $row->isAdmin);
+            $user = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
             return $user;
-
         }
+
     }
 
     public function checkUser($nom, $mdp)
     {
         $params = array('nom' => $nom);
-        echo $nom;
         $query = $this->db->selectQuery("SELECT * FROM t_user WHERE nom=:nom;", $params);
 
         $mdpDB = "";
-        echo count($query);
+
 
         foreach ($query as $row) {
-            echo $row['mdp'];
+
             if ($row['mdp']) {
 
                 $this->user->setMdp($row['mdp']);
@@ -78,7 +81,7 @@ class UserDBManager
             } else {
 
 
-                $result = "ok";
+                $result = "pas ok";
 
 
 
@@ -97,6 +100,7 @@ class UserDBManager
             $user = new User($row['pk_user'], $row['nom'], $row['mdp'], $row['isAdmin']);
             $usersList[] = $user;
         }
+        http_response_code(200);
         return $usersList;
     }
 

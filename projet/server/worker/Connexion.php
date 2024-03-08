@@ -47,7 +47,7 @@ class Connexion {
      * @param String $query. Requête à exécuter.
      * @return true si la requête a été executée
      */
-    public function executeQuery($query, $params) {
+    public function executeQuery($query, $params) : bool{
         try {
             $queryPrepared = $this->pdo->prepare($query);
             $queryRes = $queryPrepared->execute($params);

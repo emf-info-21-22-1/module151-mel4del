@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form login">
+            <h2>Login</h2>
+            <input type="text" id="username" name="username" placeholder="Username">
+            <label for="username">Username:</label>
+            <input type="password" id="password" name="password" placeholder="Password">
+            <label for="password">Password:</label>
+            <input type="radio" id="user" name="login-type" checked>
+            <label for="user">User Login</label>
+            <input type="radio" id="admin" name="login-type">
+            <label for="admin">Admin Login</label>
+            <button type="submit" class="small-button" id="login">Login</button>
+        </div>
+        <div class="form register">
+            <h2>Register</h2>
+            <input type="text" id="register_username" name="register_username" placeholder="Username">
+            <label for="register_username" id="nom">Username:</label>
+            <input type="password" id="register_password" name="register_password" placeholder="Password">
+            <label for="register_password">Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password">
+            <label for="confirm_password">Confirm Password:</label>
+            <button type="submit" class="small-button" id="register">Register</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="javascript/helper/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascript/controller/connexionCtrl.js"></script>
+    <script type="text/javascript" src="javascript/services/serviceHttp.js"></script>
+</body>
+</html>

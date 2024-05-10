@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" method="post">
+        <h2>Créer un Post</h2>
+        <label for="titre">Titre :</label>
+        <input type="text" id="titre" name="titre" required>
+
+        <label for="rubrique">Rubrique :</label>
+        <input type="text" id="rubrique" name="rubrique" required>
+
+        <label for="descriptif">Descriptif :</label>
+        <textarea id="descriptif" name="descriptif" rows="4" required></textarea>
+
+        <input type="submit" id="créé" value="Publier">
+    </form>
+    <script type="text/javascript" src="javascript/helper/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascript/controller/postCtrl.js"></script>
+    <script type="text/javascript" src="javascript/services/serviceHttp.js"></script>
+</body>
+
+</html>

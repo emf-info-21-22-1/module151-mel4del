@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elkhanthar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between; /* Pour aligner les éléments à gauche et à droite */
+            align-items: center; /* Pour aligner verticalement les éléments */
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        section {
+            flex: 1 1 300px;
+            margin-right: 1rem;
+        }
+
+        section:last-child {
+            margin-right: 0;
+        }
+
+        section h2 {
+            background-color: #333;
+            color: #fff;
+            margin: 0 0 1rem 0;
+            padding: 0.5rem;
+        }
+
+        section ol,
+        section ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        section li {
+            margin-bottom: 1rem;
+        }
+
+        section li h3 {
+            margin: 0;
+        }
+
+        section li p {
+            margin: 0.5rem 0 0 0;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- Bouton de création de post -->
+        <button id="create-post"><a href="https://delatenam01.emf-informatique.ch/151/client/post.html#">Créer un post</a></button>
+        <h1>SocialNet</h1>
+        <!-- Bouton de déconnexion -->
+        <button id="disconnect">Déconnexion</button>
+    </header>
+    <main>
+
+        <section id="trending-posts">
+            <h2>Trending Posts</h2>
+            <ol>
+                <li>
+                    <h3><a href="#">How to make the perfect cup of coffee</a></h3>
+                    <p>by <a href="#">u/coffee_lover</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">The benefits of meditation</a></h3>
+                    <p>by <a href="#">u/zen_master</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">The future of electric vehicles</a></h3>
+                    <p>by <a href="#">u/tesla_fan</a></p>
+                </li>
+            </ol>
+        </section>
+        <section id="new-posts">
+            <h2>New Posts</h2>
+            <ul>
+                <li>
+                    <h3><a href="#">My first post on SocialNet</a></h3>
+                    <p>by <a href="#">u/new_user</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">The best books I read in 2022</a></h3>
+                    <p>by <a href="#">u/bookworm</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">Why I love hiking</a></h3>
+                    <p>by <a href="#">u/outdoor_enthusiast</a></p>
+                </li>
+            </ul>
+        </section>
+        <section id="join-conversation">
+            <h2>Join the Conversation</h2>
+            <ul>
+                <li>
+                    <h3><a href="#">What's your favorite programming language?</a></h3>
+                    <p>by <a href="#">u/coder</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">What's the best movie you've seen recently?</a></h3>
+                    <p>by <a href="#">u/movie_buff</a></p>
+                </li>
+                <li>
+                    <h3><a href="#">What's your favorite travel destination?</a></h3>
+                    <p>by <a href="#">u/world_traveler</a></p>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Elkhanthar</p>
+
+    </footer>
+    <script type="text/javascript" src="javascript/helper/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="javascript/controller/mainVueCtrl.js"></script>
+    <script type="text/javascript" src="javascript/services/serviceHttp.js"></script>
+</body>
+
+</html>
